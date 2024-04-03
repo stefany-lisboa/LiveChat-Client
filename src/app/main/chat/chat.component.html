@@ -1,0 +1,32 @@
+<div class="chat">
+  <section class="channel-info-header">
+    <img src="https://t4.ftcdn.net/jpg/01/86/29/31/360_F_186293166_P4yk3uXQBDapbDFlR17ivpM6B1ux0fHG.jpg"/>
+    <div>
+      <span class="contact-message-name">Nome do Contato/Grupo</span><br />
+      <span class="contact-subtitle-message">Visto/Participantes</span>
+    </div>
+  </section>
+  <section id="channel-messages" class="channel-messages">
+    <div
+      class="message"
+      *ngFor="let message of messages"
+      [ngClass]="message.senderId == loggedUser ? 'sender' : 'destinatary'"
+    >
+      {{ message.content }}
+      <span class="message-status">
+        10:00
+        <i [ngClass]="getMessagestatus(message)"></i>
+      </span>
+    </div>
+  </section>
+  <section class="channel-input">
+    <input 
+      (keypress)="sendMessage($event)"
+      [formControl]="input"
+      placeholder="Digite sua mensagem..."
+    />
+    <button (click)="sendMessage($event)">
+      <i class="fa-solid fa-paper-plane"></i>
+    </button>
+  </section>
+</div>

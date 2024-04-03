@@ -1,0 +1,15 @@
+.open-conversation {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 1rem;
+    gap: 1rem;
+    cursor: pointer;
+    border-top: 2px solid var(--border-color);
+    img {
+        background-color: grey;
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+    }
+}
