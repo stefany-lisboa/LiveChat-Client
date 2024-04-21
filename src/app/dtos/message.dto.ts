@@ -1,5 +1,7 @@
 export interface MessageDTO {
   content: string;
+  destinataryId: number;
+  channelId: number;
   senderId: number;
   sended: boolean;
   received: boolean;

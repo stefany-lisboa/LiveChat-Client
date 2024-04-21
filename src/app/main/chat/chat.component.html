@@ -1,8 +1,15 @@
-<div class="chat">
+<div *ngIf="channel._id; then content; else noContent">
+
+</div>
+<ng-template #content>
+  <div class="chat">
   <section class="channel-info-header">
-    <img src="https://t4.ftcdn.net/jpg/01/86/29/31/360_F_186293166_P4yk3uXQBDapbDFlR17ivpM6B1ux0fHG.jpg"/>
+    <img
+      src="https://t4.ftcdn.net/jpg/01/86/29/31/360_F_186293166_P4yk3uXQBDapbDFlR17ivpM6B1ux0fHG.jpg"
+    />
     <div>
-      <span class="contact-message-name">Nome do Contato/Grupo</span><br />
+      <span class="contact-message-name">{{ this.channel.channel }}</span
+      ><br />
       <span class="contact-subtitle-message">Visto/Participantes</span>
     </div>
   </section>
@@ -20,7 +27,7 @@
     </div>
   </section>
   <section class="channel-input">
-    <input 
+    <input
       (keypress)="sendMessage($event)"
       [formControl]="input"
       placeholder="Digite sua mensagem..."
@@ -29,4 +36,8 @@
       <i class="fa-solid fa-paper-plane"></i>
     </button>
   </section>
-</div>
+  </div>
+</ng-template>
+<ng-template #noContent> 
+  <div>No content</div>
+</ng-template>

@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { lastValueFrom } from 'rxjs';
+import { ChannelDto } from 'src/app/dtos/channel.dto';
+import { ChannelService } from 'src/app/services/channel.service';
 
 @Component({
   selector: 'app-open-conversations',
@@ -6,76 +9,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./open-conversations.component.scss'],
 })
 export class OpenConversationsComponent {
-  public channels: any[];
+  public channels: ChannelDto[];
+  constructor(private channelService: ChannelService) {}
 
-  ngOnInit()  {
-    this.channels = [
-      {
-        id: 1,
-        name: 'First',
-        message: 'Olá, esta é um mensagem de teste...'
-      },
-      {
-        id: 2,
-        name: 'Second',
-        message: 'Olá, esta é um mensagem de teste...'
-      },
-      {
-        id: 1,
-        name: 'First',
-        message: 'Olá, esta é um mensagem de teste...'
-      },
-      {
-        id: 2,
-        name: 'Second',
-        message: 'Olá, esta é um mensagem de teste...'
-      },
-      {
-        id: 2,
-        name: 'Second',
-        message: 'Olá, esta é um mensagem de teste...'
-      },
-      {
-        id: 2,
-        name: 'Second',
-        message: 'Olá, esta é um mensagem de teste...'
-      },
-      {
-        id: 2,
-        name: 'Second',
-        message: 'Olá, esta é um mensagem de teste...'
-      },
-      {
-        id: 2,
-        name: 'Second',
-        message: 'Olá, esta é um mensagem de teste...'
-      },
-      {
-        id: 2,
-        name: 'Second',
-        message: 'Olá, esta é um mensagem de teste...'
-      },
-      {
-        id: 2,
-        name: 'Second',
-        message: 'Olá, esta é um mensagem de teste...'
-      },
-      {
-        id: 2,
-        name: 'Second',
-        message: 'Olá, esta é um mensagem de teste...'
-      },
-      {
-        id: 2,
-        name: 'Second',
-        message: 'Olá, esta é um mensagem de teste...'
-      },
+  async ngOnInit() {
+    try {
+      this.channels = await lastValueFrom(this.channelService.getChannels());
+    } catch (error) {
+      console.error('Error fetching channels:', error);
+    }
+  }
 
-      {
-        id: 2,
-        name: 'Second',
-        message: 'Olá, esta é um mensagem de teste...'
-      },
-    ];
+  sendChannelDataToChat(channel: ChannelDto) {
+    this.channelService.setChannel(channel)
   }
 }

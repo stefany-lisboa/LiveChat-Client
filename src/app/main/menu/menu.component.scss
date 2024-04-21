@@ -1,5 +1,6 @@
 .menu {
-    display: grid;
+    display: flex;
+    flex-direction: column;
     width: 350px;
     height: 100vh;
     color:var(--default-light-grey);

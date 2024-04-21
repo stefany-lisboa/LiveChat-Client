@@ -1,7 +1,7 @@
-<nav *ngFor="let channel of channels" class="open-conversation">
+<nav *ngFor="let channel of channels" class="open-conversation" (click)="sendChannelDataToChat(channel)">
     <img src="https://t4.ftcdn.net/jpg/01/86/29/31/360_F_186293166_P4yk3uXQBDapbDFlR17ivpM6B1ux0fHG.jpg" alt="">
     <div>
-        <b>{{channel.name}}</b>
-        <p>{{channel.message}}</p>
+        <p>{{channel.channel}}</p>
+        <p>Olá</p>
     </div>
 </nav>
